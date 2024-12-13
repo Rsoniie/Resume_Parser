@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f4f6;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.title {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.upload-button, .extract-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.upload-button:hover, .extract-button:hover {
+    background-color: #2980b9;
+}
+
+.message {
+    text-align: center;
+    color: #16a085;
+}
+
+.file-name {
+    text-align: center;
+    color: #8e44ad;
+}
+
+.content {
+    margin-top: 20px;
+    padding: 10px;
+    background: #ecf0f1;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.entities-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.entities-table th, .entities-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.entities-table th {
+    background-color: #3498db;
+    color: white;
+}
+
+.entities-table tr:nth-child(even) {
+    background-color: #f3f4f6;
+}
+
+.entities-table tr:hover {
+    background-color: #f1c40f;
+}
