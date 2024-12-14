@@ -118,7 +118,7 @@ document.getElementById('extractTextButton').addEventListener('click', async () 
             document.getElementById('extractedContent').innerHTML = `<p>Error: ${data.error}</p>`;
         }
     } catch (error) {
-        hideWaitingScreen(); // Ensure waiting screen is hidden in case of error
+        hideExtractingScreen(); // Ensure waiting screen is hidden in case of error
         document.getElementById('extractedContent').innerHTML = `<p>Error: ${error.message}</p>`;
     }
 });
@@ -126,7 +126,7 @@ document.getElementById('extractTextButton').addEventListener('click', async () 
 // Handle saving entities
 document.getElementById('saveEntitiesButton').addEventListener('click', async () => {
     try {
-        showWaitingScreen(); // Show waiting screen during saving
+        showUploadingScreen(); // Show waiting screen during saving
 
         const response = await fetch('/save', {
             method: 'POST',
@@ -134,7 +134,7 @@ document.getElementById('saveEntitiesButton').addEventListener('click', async ()
 
         const data = await response.json();
 
-        hideWaitingScreen(); // Hide waiting screen after saving
+        hideUploadingScreen(); // Hide waiting screen after saving
 
         if (response.ok) {
             document.getElementById('extractedContent').innerHTML += `
@@ -146,7 +146,7 @@ document.getElementById('saveEntitiesButton').addEventListener('click', async ()
             `;
         }
     } catch (error) {
-        hideWaitingScreen(); // Ensure waiting screen is hidden in case of error
+        hideUploadingScreen(); // Ensure waiting screen is hidden in case of error
         document.getElementById('extractedContent').innerHTML += `
             <p style="color: red;">Error: ${error.message}</p>
         `;

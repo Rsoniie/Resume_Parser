@@ -15,6 +15,9 @@ env/
 env.bak/
 venv.bak/
 
+uploads/
+
+
 # Environment variable files
 .env
 
@@ -129,6 +132,8 @@ Desktop.ini
 # Database Files
 *.sqlite3
 *.db
+
+
 
 # Cloudinary Config or Other Sensitive Configurations
 # If you have a config directory storing sensitive files, exclude it

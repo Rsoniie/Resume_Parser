@@ -10,6 +10,8 @@ from docx import Document
 from io import BytesIO
 import re 
 from pymongo import MongoClient
+from datetime import datetime
+
 
 # Load environment variables
 load_dotenv()
@@ -192,19 +194,50 @@ import json
 # Define a global entity list
 # global_entities = None
 
+# @app.route('/save', methods=['POST'])
+# def save():
+#     """
+#     Save the extracted global entities in JSON format to the local uploads folder.
+#     """
+#     try:
+
+#         uploads_dir = os.path.join(os.getcwd(), 'uploads')
+#         os.makedirs(uploads_dir, exist_ok=True)
+#         output_filename = os.path.join(uploads_dir, "global_entities.json")
+
+#         with open(output_filename, 'w', encoding='utf-8') as json_file:
+#             json.dump(global_entities, json_file, indent=4, ensure_ascii=True)
+
+#         print(f"Global entities saved locally as {output_filename}")
+
+#         return jsonify({
+#             "message": "Global entities saved locally as JSON successfully.",
+#             "output_file": output_filename,
+#             "entities": global_entities
+#         }), 200
+
+#     except Exception as e:
+#         print(f"An error occurred while saving the file: {e}")
+#         return jsonify({"error": f"An error occurred while saving the file: {str(e)}"}), 500
+
 @app.route('/save', methods=['POST'])
 def save():
     """
     Save the extracted global entities in JSON format to the local uploads folder.
+    A new file is created for each API call with a unique filename.
     """
     try:
-
+        # Define the uploads directory
         uploads_dir = os.path.join(os.getcwd(), 'uploads')
         os.makedirs(uploads_dir, exist_ok=True)
-        output_filename = os.path.join(uploads_dir, "global_entities.json")
 
+        # Generate a unique filename using a timestamp
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')  # e.g., 20241214_153045
+        output_filename = os.path.join(uploads_dir, f"global_entities_{timestamp}.json")
+
+        # Save the global entities to the file
         with open(output_filename, 'w', encoding='utf-8') as json_file:
-            json.dump(global_entities, json_file, indent=4, ensure_ascii=True)
+            json.dump(global_entities, json_file, indent=4, ensure_ascii=False)
 
         print(f"Global entities saved locally as {output_filename}")
 
@@ -217,6 +250,7 @@ def save():
     except Exception as e:
         print(f"An error occurred while saving the file: {e}")
         return jsonify({"error": f"An error occurred while saving the file: {str(e)}"}), 500
+
 
 
 if __name__ == '__main__':
