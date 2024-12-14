@@ -1,5 +1,6 @@
 
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Upload Resume and Extract Entities</h1>
+        <h1 class="title">Upload Resume</h1>
         <form id="uploadForm" class="upload-form">
             <input type="file" id="fileInput" name="file" accept=".pdf,.docx" required>
             <button type="submit" class="upload-button">Upload</button>
@@ -18,12 +19,21 @@
         <p id="fileName" class="file-name"></p>
 
         <button id="extractTextButton" class="extract-button" style="display: none;">Extract Entities</button>
+        <button id="saveEntitiesButton" class="save-button" style="display: none;">Save Entities</button>
         <div id="extractedContent" class="content"></div>
+    </div>
+
+    <!-- Waiting Screen -->
+    <div class="waiting-screen" id="extracting-screen">
+        <div class="spinner"></div>
+        <p>Extracting entities, please wait...</p>
+    </div>
+
+    <div class="waiting-screen" id="uploading-screen">
+        <div class="spinner"></div>
+        <p>Uploading, please wait...</p>
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
- 
-
-

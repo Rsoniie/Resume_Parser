@@ -45,6 +45,7 @@ except Exception as e:
 
 # Global variable to store the last uploaded file
 global_uploaded_file = None
+global_entities = []
 
 @app.route('/')
 def index():
@@ -102,6 +103,7 @@ def upload():
 @app.route('/extract_text', methods=['POST'])
 def extract_text():
     global global_uploaded_file  # Reference the global variable
+    global global_entities
 
     if not global_uploaded_file:
         print("No file has been uploaded yet.")
@@ -156,6 +158,11 @@ def extract_text():
         entities_list = [{"entity": ent.text, "label": ent.label_} for ent in doc.ents]
         print(f"NER completed. Found {len(entities_list)} entities.")
 
+        # # global_entity = entities_list
+        # global_entity.clear()
+        # global_entity.extend([{"entity": ent.text, "label": ent.label_} for ent in doc.ents])
+        global_entities = entities_list
+
         # Insert the document into MongoDB
         print("Inserting document into MongoDB...")
         document_id = collection.insert_one({
@@ -177,6 +184,40 @@ def extract_text():
     except Exception as e:
         print(f"An error occurred during text extraction: {e}")
         return jsonify({"error": f"An error occurred during text extraction: {str(e)}"}), 500
+
+
+import os
+import json
+
+# Define a global entity list
+# global_entities = None
+
+@app.route('/save', methods=['POST'])
+def save():
+    """
+    Save the extracted global entities in JSON format to the local uploads folder.
+    """
+    try:
+
+        uploads_dir = os.path.join(os.getcwd(), 'uploads')
+        os.makedirs(uploads_dir, exist_ok=True)
+        output_filename = os.path.join(uploads_dir, "global_entities.json")
+
+        with open(output_filename, 'w', encoding='utf-8') as json_file:
+            json.dump(global_entities, json_file, indent=4, ensure_ascii=True)
+
+        print(f"Global entities saved locally as {output_filename}")
+
+        return jsonify({
+            "message": "Global entities saved locally as JSON successfully.",
+            "output_file": output_filename,
+            "entities": global_entities
+        }), 200
+
+    except Exception as e:
+        print(f"An error occurred while saving the file: {e}")
+        return jsonify({"error": f"An error occurred while saving the file: {str(e)}"}), 500
+
 
 if __name__ == '__main__':
     # Run the Flask app

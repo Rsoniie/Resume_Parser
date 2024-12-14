@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,71 +8,77 @@ body {
 }
 
 .container {
-    max-width: 600px;
+    max-width: 700px; /* Width of the container */
     margin: 50px auto;
-    padding: 20px;
+    padding: 30px; /* Spacing inside the container */
     background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Rounded corners */
+    position: relative; /* Required for positioning child elements like the save button */
 }
 
 .title {
     text-align: center;
     color: #2c3e50;
+    margin-bottom: 20px; /* Space below the title */
 }
 
 .upload-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 15px; /* Space between form elements */
 }
 
-.upload-button, .extract-button {
+.upload-button, .extract-button, .save-button {
     background-color: #3498db;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 25px; /* Padding inside the button */
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 16px; /* Button text size */
 }
 
-.upload-button:hover, .extract-button:hover {
+.upload-button:hover, .extract-button:hover, .save-button:hover {
     background-color: #2980b9;
+    transform: translateY(-2px); /* Subtle hover effect */
 }
 
 .message {
     text-align: center;
     color: #16a085;
+    margin-top: 10px; /* Space above the message */
 }
 
 .file-name {
     text-align: center;
     color: #8e44ad;
+    margin-top: 5px; /* Space above the file name */
 }
 
 .content {
-    margin-top: 20px;
-    padding: 10px;
+    margin-top: 25px; /* Space above the content */
+    padding: 15px;
     background: #ecf0f1;
-    border-radius: 5px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-} 
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
 
-
+/* Entities Table Styles */
 .entities-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 15px; /* Space above the table */
     background: #fff;
     border-radius: 5px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .entities-table th, .entities-table td {
-    padding: 10px;
+    padding: 12px 15px; /* Table cell padding */
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
@@ -79,65 +86,68 @@ body {
 .entities-table th {
     background-color: #3498db;
     color: white;
-}
-
-.entities-table tr:nth-child(even) {
-    background-color: #f3f4f6;
-}
-
-.entities-table tr:hover {
-    background-color: #f1c40f;
-}
-
-
-/* General styles */
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 20px;
-    background-color: #f4f4f9;
-}
-
-form {
-    margin: 20px 0;
-}
-
-button {
-    background: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     font-size: 16px;
 }
 
-button:hover {
-    background: #0056b3;
+.entities-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row color */
 }
 
-/* Results Section */
-#result {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background: #ffffff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+.entities-table tr:hover {
+    background-color: #f1c40f; /* Highlight on hover */
 }
 
-/* Waiting Screens */
+/* Save Entities Button Styling */
+.save-button {
+    background-color: #27ae60; /* Cool green color */
+    color: white; /* White text */
+    border: none;
+    padding: 12px 20px; /* Button padding */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Text size */
+    position: absolute; /* Position relative to the container */
+    bottom: 20px; /* Distance from the bottom of the container */
+    right: 20px; /* Distance from the right edge of the container */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition effects */
+}
+
+.save-button:hover {
+    background-color: #219150; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight hover lift */
+}
+
+/* Redesigned Waiting Screen as a Small Centered Card */
 .waiting-screen {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    display: none; /* Hidden initially */
+    position: fixed; /* Fixed to viewport */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position to truly center */
+    width: 250px; /* Set a fixed width for the card */
+    padding: 25px; /* Increased padding for better spacing */
+    background: #3498db; /* Blue background */
     color: white;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1001; /* Ensure it appears above other elements */
+}
+
+/* Updated Spinner with White Color */
+.spinner {
+    border: 6px solid #f3f4f6; /* Light gray background */
+    border-top: 6px solid #ffffff; /* White spinner */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px auto; /* Center the spinner and add spacing below */
+}
+
+/* Spinner Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
